@@ -1,0 +1,20 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="xyz.ibat.sloth.main.fragments.TwoFragment">
+
+    <xyz.ibat.sloth.view.RefreshLayout
+        android:id="@+id/refresh_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:id="@+id/listview_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </xyz.ibat.sloth.view.RefreshLayout>
+
+
+</FrameLayout>
