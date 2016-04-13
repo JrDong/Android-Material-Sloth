@@ -1,4 +1,4 @@
-package xyz.ibat.sloth.main.activities;
+package xyz.ibat.sloth.base;
 
 import android.os.Build;
 import android.os.Bundle;

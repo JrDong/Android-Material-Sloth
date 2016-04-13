@@ -8,4 +8,8 @@
     <color name="black">#000000</color>
     <color name="black_66">#66000000</color>
     <color name="background">#f2f2f2</color>
+
+    <color name="tabbar_text_color">#999999</color>
+    <color name="tabbar_text_color_checked">#5EDDCA</color>
+    <color name="common_line_color">#cccccc</color>
 </resources>

@@ -2,11 +2,8 @@ package xyz.ibat.sloth.main.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -15,15 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import xyz.ibat.sloth.R;
-import xyz.ibat.sloth.main.fragments.OneFragment;
-import xyz.ibat.sloth.main.fragments.ThreeFragment;
-import xyz.ibat.sloth.main.fragments.TwoFragment;
+import xyz.ibat.sloth.base.BaseActivity;
+import xyz.ibat.sloth.base.TabsFragment;
 import xyz.ibat.sloth.utils.SlothUtil;
 
 /**
@@ -38,10 +31,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     NavigationView mNavigationView;
     @Bind(R.id.drawLayout)
     DrawerLayout mDrawerLayout;
-    @Bind(R.id.tabs)
-    TabLayout mTabs;
-    @Bind(R.id.vp_main)
-    ViewPager mViewPager;
 
     ActionBarDrawerToggle mDrawerToggle;
 
@@ -52,19 +41,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         ButterKnife.bind(this);
         initToolbar();
         initDrawLayout();
-        initViewPager();
+        initFragment();
     }
 
-    private void initViewPager() {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "ONE");
-        adapter.addFragment(new TwoFragment(), "TWO");
-        adapter.addFragment(new ThreeFragment(), "THREE");
-        mViewPager.setAdapter(adapter);
-        mTabs.setupWithViewPager(mViewPager);
-        mTabs.setSelectedTabIndicatorColor(getResources().getColor(R.color.white));
-        mTabs.setTabTextColors(getResources().getColor(R.color.white_66), getResources().getColor(R.color.white));
+    private void initFragment() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.fl_root,new TabsFragment());
+        transaction.commitAllowingStateLoss();
     }
+
 
     private void initToolbar() {
         setSupportActionBar(mainToolbar);
@@ -145,33 +131,5 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mDrawerToggle.syncState();
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-    }
 }
