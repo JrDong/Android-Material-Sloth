@@ -20,6 +20,7 @@
         android:background="@color/common_line_color"
         />
     <RadioGroup
+        android:id="@+id/tab_group"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"

@@ -30,7 +30,7 @@ public class MainFragment extends BaseFragment {
     ViewPager mViewPager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab_main, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
