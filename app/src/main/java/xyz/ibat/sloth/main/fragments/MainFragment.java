@@ -40,7 +40,7 @@ public class MainFragment extends BaseFragment {
         initViewPager();
     }
     private void initViewPager() {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(((BaseActivity)getActivity()).getSupportFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter((getActivity()).getSupportFragmentManager());
         adapter.addFragment(new OneFragment(), "ONE");
         adapter.addFragment(new TwoFragment(), "TWO");
         adapter.addFragment(new ThreeFragment(), "THREE");

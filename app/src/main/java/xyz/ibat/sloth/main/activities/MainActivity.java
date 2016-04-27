@@ -1,6 +1,8 @@
 package xyz.ibat.sloth.main.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -94,10 +96,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_home:
                 SlothUtil.showToast("HOME");
                 mDrawerLayout.closeDrawer(Gravity.START);
+                startActivity(new Intent(this,HomeActivity.class));
                 break;
             case R.id.nav_messages:
                 SlothUtil.showToast("MESSAGE");
                 mDrawerLayout.closeDrawer(Gravity.START);
+                startActivity(new Intent(this,MessageActivity.class));
                 break;
             case R.id.nav_friends:
                 SlothUtil.showToast("FRIENDS");
