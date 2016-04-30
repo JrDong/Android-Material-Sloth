@@ -3,6 +3,7 @@ package xyz.ibat.sloth.main.activities;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -18,7 +19,8 @@ public class HomeActivity extends AppCompatActivity {
     Toolbar mainToolbar;
     @Bind(R.id.fab)
     FloatingActionButton fab;
-
+    @Bind(R.id.tabs)
+    TabLayout tabs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,5 +42,15 @@ public class HomeActivity extends AppCompatActivity {
                         .show();
             }
         });
+        mainToolbar.setNavigationIcon(R.mipmap.icon_arrow_back);
+        mainToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        tabs.addTab(tabs.newTab().setText("ONE"));
+        tabs.addTab(tabs.newTab().setText("TWO"));
     }
 }

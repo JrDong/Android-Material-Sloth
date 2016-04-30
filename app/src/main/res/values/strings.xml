@@ -8,4 +8,6 @@
     <string name="map_tab">地图</string>
     <string name="info_tab">咨询</string>
     <string name="mine_tab">我的</string>
+
+    <string name="card_view_text">Please do not see me off.The journey I am walking on alone is lonely and dangerous.</string>
 </resources>
