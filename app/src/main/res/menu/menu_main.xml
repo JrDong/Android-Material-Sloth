@@ -6,4 +6,15 @@
           android:title="@string/action_settings"
           android:orderInCategory="100"
           app:showAsAction="never"/>
+    <item android:id="@+id/action_about"
+        android:title="@string/action_about"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_search"
+        android:title="@string/action_search"
+        android:orderInCategory="100"
+        android:icon="@mipmap/icon_search"
+        app:showAsAction="ifRoom"
+        />
+
 </menu>

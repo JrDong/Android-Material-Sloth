@@ -57,6 +57,27 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private void initToolbar() {
         setSupportActionBar(mainToolbar);
         mainToolbar.setNavigationIcon(R.mipmap.ic_toolbar_drawer);
+//      mainToolbar.setLogo();
+//      mainToolbar.setSubtitle();
+        mainToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                String msg = "";
+                switch (item.getItemId()){
+                    case R.id.action_search:
+                        msg = "search";
+                        break;
+                    case R.id.action_about:
+                        msg = "about";
+                        break;
+                    case R.id.action_settings:
+                        msg = "setting";
+                        break;
+                }
+                SlothUtil.showToast(msg);
+                return false;
+            }
+        });
     }
 
     private void initDrawLayout() {
@@ -80,7 +101,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_drawer, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
