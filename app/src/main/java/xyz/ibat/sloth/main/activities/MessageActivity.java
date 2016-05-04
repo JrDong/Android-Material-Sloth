@@ -12,7 +12,9 @@ import android.widget.ImageView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import xyz.ibat.sloth.R;
-
+/**
+ * create by DongJr 2016/04/29
+ */
 public class MessageActivity extends AppCompatActivity {
 
     @Bind(R.id.backdrop)
@@ -45,4 +47,18 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
     }
+
+//    @OnClick({R.id.bt_enterAlways,R.id.bt_AlwaysCollapsed,R.id.bt_untilcollapsed})
+//    public void onClick(View v){
+//        switch (v.getId()){
+//            case R.id.bt_enterAlways:
+//                collapsingToolbar.setScrollBarStyle();
+//                break;
+//            case R.id.bt_AlwaysCollapsed:
+//                break;
+//            case R.id.bt_untilcollapsed:
+//                break;
+//        }
+//    }
+
 }

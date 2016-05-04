@@ -12,7 +12,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import xyz.ibat.sloth.R;
 import xyz.ibat.sloth.utils.SlothUtil;
-
+/**
+ * create by DongJr 2016/04/29
+ */
 public class HomeActivity extends AppCompatActivity {
 
     @Bind(R.id.main_toolbar)

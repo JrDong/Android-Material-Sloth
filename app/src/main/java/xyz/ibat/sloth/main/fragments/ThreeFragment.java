@@ -21,7 +21,9 @@ import xyz.ibat.sloth.main.bean.ThreeBean;
 import xyz.ibat.sloth.main.viewholder.ThreeViewHolder;
 import xyz.ibat.sloth.view.SlothRecycler;
 
-
+/**
+ * Created by DongJr on 2016/03/31
+ */
 public class ThreeFragment extends Fragment {
 
     @Bind(R.id.recycler_three)

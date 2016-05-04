@@ -22,7 +22,8 @@
             android:name=".base.BaseActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".main.activities.HomeActivity" />
-        <activity android:name=".main.activities.MessageActivity"></activity>
+        <activity android:name=".main.activities.MessageActivity" />
+        <activity android:name=".main.activities.FriendActivity"></activity>
     </application>
 
 </manifest>

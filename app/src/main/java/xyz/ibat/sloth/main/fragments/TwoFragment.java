@@ -18,7 +18,9 @@ import xyz.ibat.sloth.R;
 import xyz.ibat.sloth.main.bean.OneBean;
 import xyz.ibat.sloth.view.RefreshLayout;
 
-
+/**
+ * Created by DongJr on 2016/03/31
+ */
 public class TwoFragment extends Fragment {
 
     @Bind(R.id.listview_two)
