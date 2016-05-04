@@ -32,19 +32,19 @@ public class ScrollBehavior extends CoordinatorLayout.Behavior {
     }
 
     private void onScroll(View child, int dyConsumed) {
-//        int old = offsetTotal;
-//        int top = offsetTotal - dyConsumed;
-//        top = Math.max(top, -child.getHeight());
-//        top = Math.min(top, 0);
-//        offsetTotal = top;
-//        if (old == offsetTotal){
-//            return;
-//        }
-//        int delta = offsetTotal-old;
-//        child.offsetTopAndBottom(delta);
-        int top = -dyConsumed;
-        top = Math.min(top,child.getHeight());
-        child.offsetTopAndBottom(top);
+        int old = offsetTotal;
+        int top = offsetTotal - dyConsumed;
+        top = Math.max(top, -child.getHeight());
+        top = Math.min(top, 0);
+        offsetTotal = top;
+        if (old == offsetTotal){
+            return;
+        }
+        int delta = offsetTotal-old;
+        child.offsetTopAndBottom(delta);
+//        int top = -dyConsumed;
+//        top = Math.min(top,child.getHeight());
+//        child.offsetTopAndBottom(top);
     }
 
 

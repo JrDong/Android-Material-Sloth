@@ -2,7 +2,6 @@ package xyz.ibat.sloth.main.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -88,10 +87,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mainToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mDrawerLayout.isDrawerOpen(Gravity.START)) {
-                    mDrawerLayout.closeDrawer(Gravity.START);
+                if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
                 } else {
-                    mDrawerLayout.openDrawer(Gravity.START);
+                    mDrawerLayout.openDrawer(Gravity.LEFT);
                 }
             }
         });
@@ -116,31 +115,31 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (item.getItemId()) {
             case R.id.nav_home:
                 SlothUtil.showToast("HOME");
-                mDrawerLayout.closeDrawer(Gravity.START);
+                mDrawerLayout.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(this,HomeActivity.class));
                 break;
             case R.id.nav_messages:
                 SlothUtil.showToast("MESSAGE");
-                mDrawerLayout.closeDrawer(Gravity.START);
+                mDrawerLayout.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(this,MessageActivity.class));
                 break;
             case R.id.nav_friends:
                 SlothUtil.showToast("FRIENDS");
-                mDrawerLayout.closeDrawer(Gravity.START);
+                mDrawerLayout.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(this,FriendActivity.class));
                 break;
             case R.id.nav_discussion:
                 SlothUtil.showToast("DISCUSSION");
-                mDrawerLayout.closeDrawer(Gravity.START);
+                mDrawerLayout.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(this,DiscussionActivity.class));
                 break;
             case R.id.sub_item1:
                 SlothUtil.showToast("SUB_ITEM1");
-                mDrawerLayout.closeDrawer(Gravity.START);
+                mDrawerLayout.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.sub_item2:
                 SlothUtil.showToast("SUB_ITEM2");
-                mDrawerLayout.closeDrawer(Gravity.START);
+                mDrawerLayout.closeDrawer(Gravity.LEFT);
                 break;
         }
         return false;
