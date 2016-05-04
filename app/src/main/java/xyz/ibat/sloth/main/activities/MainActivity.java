@@ -111,6 +111,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_discussion:
                 SlothUtil.showToast("DISCUSSION");
                 mDrawerLayout.closeDrawer(Gravity.START);
+                startActivity(new Intent(this,DiscussionActivity.class));
                 break;
             case R.id.sub_item1:
                 SlothUtil.showToast("SUB_ITEM1");

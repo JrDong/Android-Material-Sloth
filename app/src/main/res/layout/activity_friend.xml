@@ -12,14 +12,14 @@
                 android:id="@+id/first"
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
-                android:background="@android:color/holo_blue_light" />
+                android:background="@color/colorPrimary" />
 
             <View
                 android:id="@+id/second"
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
                 android:background="@android:color/holo_green_light"
-                app:layout_behavior=".view.MyBehavior"
+                app:layout_behavior=".view.FollowBehavior"
                 app:target="@id/first" />
 
     </android.support.design.widget.CoordinatorLayout>
