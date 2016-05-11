@@ -4,11 +4,11 @@ import android.animation.Animator;
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 /**
@@ -18,7 +18,7 @@ public class BottomScrollBehavior extends CoordinatorLayout.Behavior {
 
     int offsetTotal = 0;
 
-    private static final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
+    private static final Interpolator INTERPOLATOR = new AccelerateDecelerateInterpolator();
 
 
     private int sinceDirectionChange;
@@ -43,9 +43,9 @@ public class BottomScrollBehavior extends CoordinatorLayout.Behavior {
             sinceDirectionChange = 0;
         }
         sinceDirectionChange += dyConsumed;
-        if (sinceDirectionChange > child.getHeight() && child.getVisibility() == View.VISIBLE) {
+        if (sinceDirectionChange > child.getHeight()) {
             hide(child);
-        } else if (sinceDirectionChange < 0 && child.getVisibility() == View.GONE) {
+        } else if (sinceDirectionChange < 0 ) {
             show(child);
         }
     }
@@ -67,7 +67,7 @@ public class BottomScrollBehavior extends CoordinatorLayout.Behavior {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                view.setVisibility(View.GONE);
+//                view.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -94,7 +94,7 @@ public class BottomScrollBehavior extends CoordinatorLayout.Behavior {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                view.setVisibility(View.VISIBLE);
+//                view.setVisibility(View.VISIBLE);
             }
 
             @Override
