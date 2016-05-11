@@ -83,7 +83,6 @@ public class TabsFragment extends BaseFragment implements View.OnClickListener{
         if (tag.equals(mCurrentTag)){
             return;
         }else {
-
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             if(!TextUtils.isEmpty(mCurrentTag)) {
                 transaction.hide(mFactory.getFragmentByTag(mCurrentTag));

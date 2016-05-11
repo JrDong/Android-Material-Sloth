@@ -1,83 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:layout_height="match_parent">
+
+
     <FrameLayout
         android:id="@+id/fragment_tab"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/background"
-        >
+        android:layout_height="match_parent"
+      >
 
     </FrameLayout>
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/common_line_color"
-        />
-    <RadioGroup
-        android:id="@+id/tab_group"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:clickable="false"
-        >
+        android:layout_height="56dp"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        app:layout_behavior=".view.BottomScrollBehavior">
 
-        <RadioButton
-            android:id="@+id/main_tab"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/main_tab_selector"
-            android:gravity="center"
-            android:paddingTop="6dp"
-            android:drawablePadding="3dp"
-            android:text="@string/main_tab"
-            android:textColor="@drawable/tab_text_selector" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/common_line_color" />
 
-        <RadioButton
-            android:id="@+id/map_tab"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/map_tab_selector"
-            android:gravity="center"
-            android:paddingTop="6dp"
-            android:drawablePadding="3dp"
-            android:text="@string/map_tab"
-            android:textColor="@drawable/tab_text_selector" />
+        <RadioGroup
+            android:id="@+id/tab_group"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:clickable="false"
+            android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/info_tab"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/info_tab_selector"
-            android:gravity="center"
-            android:paddingTop="6dp"
-            android:drawablePadding="3dp"
-            android:text="@string/info_tab"
-            android:textColor="@drawable/tab_text_selector" />
+            <RadioButton
+                android:id="@+id/main_tab"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawablePadding="3dp"
+                android:drawableTop="@drawable/main_tab_selector"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:text="@string/main_tab"
+                android:textColor="@drawable/tab_text_selector" />
 
-        <RadioButton
-            android:id="@+id/mine_tab"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/mine_tab_selector"
-            android:gravity="center"
-            android:paddingTop="6dp"
-            android:drawablePadding="3dp"
-            android:text="@string/mine_tab"
-            android:textColor="@drawable/tab_text_selector" />
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/map_tab"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawablePadding="3dp"
+                android:drawableTop="@drawable/map_tab_selector"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:text="@string/map_tab"
+                android:textColor="@drawable/tab_text_selector" />
 
-</LinearLayout>
+            <RadioButton
+                android:id="@+id/info_tab"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawablePadding="3dp"
+                android:drawableTop="@drawable/info_tab_selector"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:text="@string/info_tab"
+                android:textColor="@drawable/tab_text_selector" />
+
+            <RadioButton
+                android:id="@+id/mine_tab"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawablePadding="3dp"
+                android:drawableTop="@drawable/mine_tab_selector"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:text="@string/mine_tab"
+                android:textColor="@drawable/tab_text_selector" />
+        </RadioGroup>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
