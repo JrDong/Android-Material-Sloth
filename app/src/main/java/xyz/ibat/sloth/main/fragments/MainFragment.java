@@ -46,8 +46,11 @@ public class MainFragment extends BaseFragment {
         adapter.addFragment(new TwoFragment(), "TWO");
         adapter.addFragment(new ThreeFragment(), "THREE");
         mViewPager.setAdapter(adapter);
+        //必须在setAdapter之后调用
         mTabs.setupWithViewPager(mViewPager);
+        //设置指示器颜色
         mTabs.setSelectedTabIndicatorColor(getResources().getColor(R.color.white));
+        //tab的颜色,属性一,正常颜色;属性二,被选中的颜色.
         mTabs.setTabTextColors(getResources().getColor(R.color.white_66), getResources().getColor(R.color.white));
     }
 
