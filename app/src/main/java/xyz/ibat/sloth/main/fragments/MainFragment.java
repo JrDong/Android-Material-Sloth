@@ -16,7 +16,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import xyz.ibat.sloth.R;
-import xyz.ibat.sloth.base.BaseActivity;
 import xyz.ibat.sloth.base.BaseFragment;
 
 /**
@@ -28,6 +27,7 @@ public class MainFragment extends BaseFragment {
     TabLayout mTabs;
     @Bind(R.id.vp_main)
     ViewPager mViewPager;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab_main, container, false);
@@ -39,6 +39,7 @@ public class MainFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         initViewPager();
     }
+
     private void initViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter((getActivity()).getSupportFragmentManager());
         adapter.addFragment(new OneFragment(), "ONE");
@@ -79,6 +80,7 @@ public class MainFragment extends BaseFragment {
             return mFragmentTitleList.get(position);
         }
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

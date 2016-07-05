@@ -48,17 +48,6 @@ public class MessageActivity extends AppCompatActivity {
         });
     }
 
-//    @OnClick({R.id.bt_enterAlways,R.id.bt_AlwaysCollapsed,R.id.bt_untilcollapsed})
-//    public void onClick(View v){
-//        switch (v.getId()){
-//            case R.id.bt_enterAlways:
-//                collapsingToolbar.setScrollBarStyle();
-//                break;
-//            case R.id.bt_AlwaysCollapsed:
-//                break;
-//            case R.id.bt_untilcollapsed:
-//                break;
-//        }
-//    }
+
 
 }
