@@ -13,11 +13,12 @@ import android.widget.RadioGroup;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import xyz.ibat.sloth.R;
+import xyz.ibat.sloth.view.animation.FrameDrawable;
 
 /**
  * Created by DongJr on 2016/4/12.
  */
-public class TabsFragment extends BaseFragment implements View.OnClickListener{
+public class TabsFragment extends BaseFragment implements View.OnClickListener {
 
     @Bind(R.id.fragment_tab)
     FrameLayout fragmentTab;
@@ -34,6 +35,7 @@ public class TabsFragment extends BaseFragment implements View.OnClickListener{
 
     private FragmentFactory mFactory;
     private String mCurrentTag;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
@@ -58,38 +60,65 @@ public class TabsFragment extends BaseFragment implements View.OnClickListener{
 
         initFragment(FragmentFactory.MAIN_TAG);
     }
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.main_tab:
+                new FrameDrawable(getContext(), mainTab)
+                        .addFrame(new int[]{R.mipmap.icon_mine_pressed
+                                , R.mipmap.icon_map_pressed, R.mipmap.icon_info_pressed
+                                , R.mipmap.icon_mine_pressed, R.mipmap.icon_main_pressed}, 100)
+                        .setOneRepeat(true)
+                        .show();
+
                 initFragment(FragmentFactory.MAIN_TAG);
                 break;
             case R.id.map_tab:
+                new FrameDrawable(getContext(), mapTab)
+                        .addFrame(new int[]{R.mipmap.icon_mine_pressed
+                                , R.mipmap.icon_map_pressed, R.mipmap.icon_info_pressed
+                                , R.mipmap.icon_mine_pressed, R.mipmap.icon_main_pressed}, 100)
+                        .setOneRepeat(true)
+                        .show();
                 initFragment(FragmentFactory.MAP_TAG);
                 break;
             case R.id.info_tab:
+                new FrameDrawable(getContext(), infoTab)
+                        .addFrame(new int[]{R.mipmap.icon_mine_pressed
+                                , R.mipmap.icon_map_pressed, R.mipmap.icon_info_pressed
+                                , R.mipmap.icon_mine_pressed, R.mipmap.icon_main_pressed}, 100)
+                        .setOneRepeat(true)
+                        .show();
                 initFragment(FragmentFactory.INFO_TAG);
                 break;
             case R.id.mine_tab:
+                new FrameDrawable(getContext(), mineTab)
+                        .addFrame(new int[]{R.mipmap.icon_mine_pressed
+                                , R.mipmap.icon_map_pressed, R.mipmap.icon_info_pressed
+                                , R.mipmap.icon_mine_pressed, R.mipmap.icon_main_pressed}, 100)
+                        .setOneRepeat(true)
+                        .show();
                 initFragment(FragmentFactory.MINE_TAG);
                 break;
         }
     }
-    private void initFragment(String tag){
+
+    private void initFragment(String tag) {
         BaseFragment baseFragment = mFactory.getFragmentByTag(tag);
-        if (baseFragment==null){
+        if (baseFragment == null) {
             throw new IllegalAccessError("tag is error!");
         }
-        if (tag.equals(mCurrentTag)){
+        if (tag.equals(mCurrentTag)) {
             return;
-        }else {
+        } else {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            if(!TextUtils.isEmpty(mCurrentTag)) {
+            if (!TextUtils.isEmpty(mCurrentTag)) {
                 transaction.hide(mFactory.getFragmentByTag(mCurrentTag));
             }
-            if (!baseFragment.isAdded()){
-                transaction.add(R.id.fragment_tab,baseFragment);
-            }else {
+            if (!baseFragment.isAdded()) {
+                transaction.add(R.id.fragment_tab, baseFragment);
+            } else {
                 transaction.show(baseFragment);
             }
             transaction.commitAllowingStateLoss();
