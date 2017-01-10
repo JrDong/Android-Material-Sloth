@@ -6,9 +6,11 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 
@@ -73,7 +75,12 @@ public class TwoFragment extends Fragment {
         mTwoAdaper = new TwoAdaper();
         listTwo.setAdapter(mTwoAdaper);
         initRefresh();
-
+        listTwo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getContext(),"点击了",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initRefresh() {
