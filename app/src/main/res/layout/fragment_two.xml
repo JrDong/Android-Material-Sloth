@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/background"
-    tools:context="xyz.ibat.sloth.main.fragments.TwoFragment">
+    tools:context=".domain.main.fragments.TwoFragment">
 
     <ListView
         app:layout_behavior = "@string/appbar_scrolling_view_behavior"

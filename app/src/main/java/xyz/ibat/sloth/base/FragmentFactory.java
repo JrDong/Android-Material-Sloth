@@ -2,10 +2,10 @@ package xyz.ibat.sloth.base;
 
 import java.util.HashMap;
 
-import xyz.ibat.sloth.info.InfoFragment;
-import xyz.ibat.sloth.main.fragments.MainFragment;
-import xyz.ibat.sloth.map.MapFragment;
-import xyz.ibat.sloth.mine.MineFragment;
+import xyz.ibat.sloth.domain.info.InfoFragment;
+import xyz.ibat.sloth.domain.main.fragments.MainFragment;
+import xyz.ibat.sloth.domain.map.MapFragment;
+import xyz.ibat.sloth.domain.mine.MineFragment;
 
 /**
  * Created by DongJr on 2016/4/15.

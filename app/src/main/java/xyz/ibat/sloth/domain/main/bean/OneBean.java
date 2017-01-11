@@ -1,4 +1,4 @@
-package xyz.ibat.sloth.main.bean;
+package xyz.ibat.sloth.domain.main.bean;
 
 /**
  * Created by DongJr on 2016/4/5.

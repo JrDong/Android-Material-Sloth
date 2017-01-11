@@ -1,4 +1,4 @@
-package xyz.ibat.sloth.main.activities;
+package xyz.ibat.sloth.domain.main.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

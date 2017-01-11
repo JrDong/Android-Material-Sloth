@@ -11,7 +11,7 @@
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp"
-    tools:context="xyz.ibat.sloth.main.fragments.ThreeFragment">
+    tools:context=".domain.main.fragments.ThreeFragment">
 
     <ImageView
         android:id="@+id/iv_card"

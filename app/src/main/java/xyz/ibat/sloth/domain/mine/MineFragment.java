@@ -1,4 +1,4 @@
-package xyz.ibat.sloth.mine;
+package xyz.ibat.sloth.domain.mine;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package xyz.ibat.sloth.main.fragments;
+package xyz.ibat.sloth.domain.main.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,7 +17,7 @@ import java.util.LinkedList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import xyz.ibat.sloth.R;
-import xyz.ibat.sloth.main.bean.OneBean;
+import xyz.ibat.sloth.domain.main.bean.OneBean;
 import xyz.ibat.sloth.view.RefreshLayout;
 
 /**

@@ -1,4 +1,4 @@
-package xyz.ibat.sloth.view;
+package xyz.ibat.sloth.view.behavior;
 
 import android.animation.Animator;
 import android.content.Context;

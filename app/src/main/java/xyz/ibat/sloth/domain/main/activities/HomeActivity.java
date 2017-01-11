@@ -1,4 +1,4 @@
-package xyz.ibat.sloth.main.activities;
+package xyz.ibat.sloth.domain.main.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

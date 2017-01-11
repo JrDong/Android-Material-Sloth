@@ -1,4 +1,4 @@
-package xyz.ibat.sloth.main.viewholder;
+package xyz.ibat.sloth.domain.main.viewholder;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import xyz.ibat.sloth.R;
-import xyz.ibat.sloth.main.bean.OneBean;
+import xyz.ibat.sloth.domain.main.bean.OneBean;
 
 /**
  * Created by DongJr on 2016/03/31

@@ -8,6 +8,10 @@
 
 /gradlew.bat
 
+/Android-Sloth.iml
+
+/app/app.iml
+
 # Gradle files
 build/
 .gradle/

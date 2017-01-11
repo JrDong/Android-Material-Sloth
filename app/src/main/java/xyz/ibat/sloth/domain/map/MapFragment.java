@@ -1,4 +1,4 @@
-package xyz.ibat.sloth.map;
+package xyz.ibat.sloth.domain.map;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package xyz.ibat.sloth.main.fragments;
+package xyz.ibat.sloth.domain.main.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,8 +17,8 @@ import java.util.Random;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import xyz.ibat.sloth.R;
-import xyz.ibat.sloth.main.bean.ThreeBean;
-import xyz.ibat.sloth.main.viewholder.ThreeViewHolder;
+import xyz.ibat.sloth.domain.main.bean.ThreeBean;
+import xyz.ibat.sloth.domain.main.viewholder.ThreeViewHolder;
 import xyz.ibat.sloth.view.SlothRecycler;
 
 /**

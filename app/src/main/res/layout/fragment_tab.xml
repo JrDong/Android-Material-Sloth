@@ -19,7 +19,7 @@
         android:orientation="vertical"
         android:layout_gravity="bottom"
         android:background="@color/white"
-        app:layout_behavior=".view.BottomScrollBehavior">
+        app:layout_behavior=".view.behavior.BottomScrollBehavior">
 
         <TextView
             android:layout_width="match_parent"

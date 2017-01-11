@@ -1,4 +1,4 @@
-package xyz.ibat.sloth.view;
+package xyz.ibat.sloth.view.behavior;
 
 import android.content.Context;
 import android.content.res.TypedArray;

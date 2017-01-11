@@ -1,4 +1,4 @@
-package xyz.ibat.sloth.main.fragments;
+package xyz.ibat.sloth.domain.main.fragments;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;

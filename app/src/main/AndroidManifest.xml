@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".main.activities.MainActivity"
+            android:name=".domain.main.activities.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -22,15 +22,15 @@
             android:name=".base.BaseActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".main.activities.HomeActivity"
+            android:name=".domain.main.activities.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".main.activities.MessageActivity"
+            android:name=".domain.main.activities.MessageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".main.activities.FriendActivity"
+            android:name=".domain.main.activities.FriendActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".main.activities.DiscussionActivity"
+        <activity android:name=".domain.main.activities.DiscussionActivity"
             android:screenOrientation="portrait"/>
     </application>
 

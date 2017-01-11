@@ -1,4 +1,4 @@
-package xyz.ibat.sloth.info;
+package xyz.ibat.sloth.domain.info;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
