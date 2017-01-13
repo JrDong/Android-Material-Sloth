@@ -23,6 +23,7 @@ import xyz.ibat.sloth.utils.SlothUtil;
 /**
  * create by DongJr 2016/03/31
  * 图片素材，参考 https://design.google.com/icons/
+ * http://www.jianshu.com/p/7cb2cc9b726a?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io
  */
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
