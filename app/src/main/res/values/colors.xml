@@ -11,5 +11,5 @@
 
     <color name="tabbar_text_color">#999999</color>
     <color name="tabbar_text_color_checked">#5EDDCA</color>
-    <color name="common_line_color">#cccccc</color>
+    <color name="common_line_color">#eaeaea</color>
 </resources>

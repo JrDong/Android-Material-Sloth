@@ -1,15 +1,16 @@
-<xyz.ibat.sloth.view.RefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/refresh_one"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".domain.main.fragments.OneFragment">
+    tools:context=".domain.main.fragments.AndroidFragment">
 
     <xyz.ibat.sloth.view.SlothRecycler
         android:id="@+id/recycler_one"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</xyz.ibat.sloth.view.RefreshLayout>
+        android:layout_height="wrap_content"/>
+</android.support.v4.widget.SwipeRefreshLayout>
 
 

@@ -42,9 +42,25 @@ public class MainFragment extends BaseFragment {
 
     private void initViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter((getActivity()).getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "ONE");
-        adapter.addFragment(new TwoFragment(), "TWO");
-        adapter.addFragment(new ThreeFragment(), "THREE");
+        //Android
+        AndroidFragment androidFragment = new AndroidFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(AndroidFragment.TYPE_TAG, "Android");
+        androidFragment.setArguments(bundle);
+        adapter.addFragment(androidFragment, "Android");
+        //Ios
+        AndroidFragment androidFragment1 = new AndroidFragment();
+        Bundle bundle1 = new Bundle();
+        bundle1.putString(AndroidFragment.TYPE_TAG, "iOS");
+        androidFragment1.setArguments(bundle1);
+        adapter.addFragment(androidFragment1, "IOS");
+        //前端
+        AndroidFragment androidFragment2 = new AndroidFragment();
+        Bundle bundle2 = new Bundle();
+        bundle2.putString(AndroidFragment.TYPE_TAG, "前端");
+        androidFragment2.setArguments(bundle2);
+        adapter.addFragment(androidFragment2, "前端");
+
         mViewPager.setAdapter(adapter);
         //必须在setAdapter之后调用
         mTabs.setupWithViewPager(mViewPager);
