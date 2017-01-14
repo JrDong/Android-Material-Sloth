@@ -1,4 +1,4 @@
-package xyz.ibat.sloth.network.api;
+package xyz.ibat.sloth.network;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -7,6 +7,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import xyz.ibat.sloth.domain.main.model.HomeDataModel;
+import xyz.ibat.sloth.network.api.ApiService;
 
 /**
  * Created by DongJr on 2017/1/13.

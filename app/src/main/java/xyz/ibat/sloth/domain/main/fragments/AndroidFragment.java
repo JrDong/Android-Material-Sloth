@@ -16,7 +16,7 @@ import rx.Subscriber;
 import xyz.ibat.sloth.R;
 import xyz.ibat.sloth.domain.main.adapter.HomeAdapter;
 import xyz.ibat.sloth.domain.main.model.HomeDataModel;
-import xyz.ibat.sloth.network.api.RetrofitFactory;
+import xyz.ibat.sloth.network.RetrofitFactory;
 import xyz.ibat.sloth.utils.T;
 import xyz.ibat.sloth.view.SlothRecycler;
 
@@ -80,9 +80,6 @@ public class AndroidFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
             @Override
             public void onNext(HomeDataModel model) {
-                if (mRefresh != null) {
-                    mRefresh.setRefreshing(false);
-                }
                 if (mAdapter == null) {
                     mAdapter = new HomeAdapter(getContext(), model);
                     mRecyclerView.setAdapter(mAdapter);

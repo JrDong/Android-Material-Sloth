@@ -115,9 +115,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_home:
-                SlothUtil.showToast("HOME");
                 mDrawerLayout.closeDrawer(Gravity.LEFT);
-                startActivity(new Intent(this,HomeActivity.class));
+                MeiziActivity.startActivity(this);
                 break;
             case R.id.nav_messages:
                 SlothUtil.showToast("MESSAGE");
