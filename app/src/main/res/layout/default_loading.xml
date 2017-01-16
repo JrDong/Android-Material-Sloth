@@ -7,6 +7,7 @@
               android:padding="8dp">
 
     <ProgressBar
+        android:id="@+id/load_progress"
         android:layout_width="32dp"
         android:layout_height="32dp"
     />

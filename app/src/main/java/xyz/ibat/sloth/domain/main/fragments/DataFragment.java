@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import rx.Subscriber;
 import xyz.ibat.sloth.R;
+import xyz.ibat.sloth.base.adapter.NewLoadMoreWrapper;
 import xyz.ibat.sloth.domain.main.model.DataModel;
 import xyz.ibat.sloth.network.RetrofitFactory;
 import xyz.ibat.sloth.utils.T;
@@ -36,7 +38,7 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
 
     private CommonAdapter mAdapter;
-    private LoadMoreWrapper mLoadMoreWrapper;
+    private NewLoadMoreWrapper mLoadMoreWrapper;
 
     public static String TYPE_TAG = "TYPE_TAG";
     private int mPageIndex = 1;
@@ -75,8 +77,7 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                         .setText(R.id.tv_date, resultsBean.getCreatedAt());
             }
         };
-        mLoadMoreWrapper = new LoadMoreWrapper(mAdapter);
-        mLoadMoreWrapper.setLoadMoreView(R.layout.default_loading);
+        mLoadMoreWrapper = new NewLoadMoreWrapper(getContext(), mAdapter);
         mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
@@ -85,8 +86,7 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             }
         });
 
-        mLoadMoreWrapper.setShouldLoading(false);
-
+        mLoadMoreWrapper.setShouldLoadMore(false);
         mRecyclerView.setAdapter(mLoadMoreWrapper);
 
     }
@@ -102,17 +102,26 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
             @Override
             public void onError(Throwable e) {
+                mLoadMoreWrapper.setLoadState(NewLoadMoreWrapper.LoadState.ERROR);
                 T.show(e.getMessage());
             }
 
             @Override
             public void onNext(DataModel model) {
-                mLoadMoreWrapper.setShouldLoading(true);
-
+                mLoadMoreWrapper.showLoadView(true);
+                mLoadMoreWrapper.setShouldLoadMore(true);
                 if (mPageIndex == 1) {
                     mResultsList.clear();
                 }
-                mResultsList.addAll(model.getResults());
+                List<DataModel.ResultsBean> results = model.getResults();
+                if (results.size() < 20 && mPageIndex == 3) {
+                    Log.e("adapter", "show nomore view");
+                    mLoadMoreWrapper.setLoadState(NewLoadMoreWrapper.LoadState.NOMORE);
+                    mLoadMoreWrapper.setShouldLoadMore(false);
+                } else {
+                    mLoadMoreWrapper.setLoadState(NewLoadMoreWrapper.LoadState.LOAD);
+                }
+                mResultsList.addAll(results);
                 mLoadMoreWrapper.notifyDataSetChanged();
 
             }
