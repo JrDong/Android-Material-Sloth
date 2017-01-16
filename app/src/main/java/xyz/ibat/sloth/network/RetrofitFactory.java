@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-import xyz.ibat.sloth.domain.main.model.HomeDataModel;
+import xyz.ibat.sloth.domain.main.model.DataModel;
 import xyz.ibat.sloth.network.api.ApiService;
 
 /**
@@ -40,7 +40,7 @@ public class RetrofitFactory {
         return SingletonHolder.INSTANCE;
     }
 
-    public void getAndroidData(Subscriber<HomeDataModel> subscriber, String type, int pageIndex) {
+    public void getAndroidData(Subscriber<DataModel> subscriber, String type, int pageIndex) {
 
         apiService.getAndroidData(type, pageIndex)
                 .subscribeOn(Schedulers.io())

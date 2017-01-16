@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".domain.main.fragments.AndroidFragment">
+    tools:context=".domain.main.fragments.DataFragment">
 
     <xyz.ibat.sloth.view.SlothRecycler
         android:id="@+id/recycler_one"

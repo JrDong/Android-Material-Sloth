@@ -43,23 +43,23 @@ public class MainFragment extends BaseFragment {
     private void initViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter((getActivity()).getSupportFragmentManager());
         //Android
-        AndroidFragment androidFragment = new AndroidFragment();
+        DataFragment dataFragment = new DataFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(AndroidFragment.TYPE_TAG, "Android");
-        androidFragment.setArguments(bundle);
-        adapter.addFragment(androidFragment, "Android");
+        bundle.putString(DataFragment.TYPE_TAG, "Android");
+        dataFragment.setArguments(bundle);
+        adapter.addFragment(dataFragment, "Android");
         //Ios
-        AndroidFragment androidFragment1 = new AndroidFragment();
+        DataFragment dataFragment1 = new DataFragment();
         Bundle bundle1 = new Bundle();
-        bundle1.putString(AndroidFragment.TYPE_TAG, "iOS");
-        androidFragment1.setArguments(bundle1);
-        adapter.addFragment(androidFragment1, "IOS");
+        bundle1.putString(DataFragment.TYPE_TAG, "iOS");
+        dataFragment1.setArguments(bundle1);
+        adapter.addFragment(dataFragment1, "IOS");
         //前端
-        AndroidFragment androidFragment2 = new AndroidFragment();
+        DataFragment dataFragment2 = new DataFragment();
         Bundle bundle2 = new Bundle();
-        bundle2.putString(AndroidFragment.TYPE_TAG, "前端");
-        androidFragment2.setArguments(bundle2);
-        adapter.addFragment(androidFragment2, "前端");
+        bundle2.putString(DataFragment.TYPE_TAG, "前端");
+        dataFragment2.setArguments(bundle2);
+        adapter.addFragment(dataFragment2, "前端");
 
         mViewPager.setAdapter(adapter);
         //必须在setAdapter之后调用

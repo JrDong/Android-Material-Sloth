@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import xyz.ibat.sloth.domain.main.model.HomeDataModel;
+import xyz.ibat.sloth.domain.main.model.DataModel;
 
 /**
  * Created by jerry on 2017/1/14.
@@ -17,19 +17,19 @@ public class MeiziAdapter extends RecyclerView.Adapter<MeiziHolder>{
 
     private Context mContext;
 
-    private List<HomeDataModel.ResultsBean> mList = new ArrayList<>();
+    private List<DataModel.ResultsBean> mList = new ArrayList<>();
 
     public MeiziAdapter(Context context) {
         mContext = context;
     }
 
-    public MeiziAdapter(Context context, HomeDataModel model) {
+    public MeiziAdapter(Context context, DataModel model) {
         mContext = context;
-        List<HomeDataModel.ResultsBean> list = model.getResults();
+        List<DataModel.ResultsBean> list = model.getResults();
         mList.addAll(list);
     }
 
-    public void setData(HomeDataModel model) {
+    public void setData(DataModel model) {
         mList.clear();
         mList.addAll(model.getResults());
         notifyDataSetChanged();

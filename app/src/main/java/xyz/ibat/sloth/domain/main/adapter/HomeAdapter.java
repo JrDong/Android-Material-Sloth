@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import xyz.ibat.sloth.domain.main.model.HomeDataModel;
+import xyz.ibat.sloth.domain.main.model.DataModel;
 
 /**
  * Created by DongJr on 2017/1/13.
@@ -17,19 +17,19 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeHolder> {
 
     private Context mContext;
 
-    private List<HomeDataModel.ResultsBean> mList = new ArrayList<>();
+    private List<DataModel.ResultsBean> mList = new ArrayList<>();
 
     public HomeAdapter(Context context) {
         mContext = context;
     }
 
-    public HomeAdapter(Context context, HomeDataModel model) {
+    public HomeAdapter(Context context, DataModel model) {
         mContext = context;
-        List<HomeDataModel.ResultsBean> list = model.getResults();
+        List<DataModel.ResultsBean> list = model.getResults();
         mList.addAll(list);
     }
 
-    public void setData(HomeDataModel model) {
+    public void setData(DataModel model) {
         mList.clear();
         mList.addAll(model.getResults());
         notifyDataSetChanged();

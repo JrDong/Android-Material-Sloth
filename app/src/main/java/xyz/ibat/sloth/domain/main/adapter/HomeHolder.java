@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import xyz.ibat.sloth.R;
-import xyz.ibat.sloth.domain.main.model.HomeDataModel;
+import xyz.ibat.sloth.domain.main.model.DataModel;
 
 /**
  * Created by DongJr on 2017/1/13.
@@ -32,7 +32,7 @@ public class HomeHolder extends RecyclerView.ViewHolder {
         return new HomeHolder(view);
     }
 
-    public void getView(HomeDataModel.ResultsBean bean) {
+    public void getView(DataModel.ResultsBean bean) {
         mTitle.setText(bean.getDesc());
         mDate.setText(bean.getPublishedAt());
         mAuthor.setText(bean.getWho());

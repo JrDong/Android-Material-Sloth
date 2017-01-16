@@ -6,7 +6,7 @@ import java.util.List;
  * Created by DongJr on 2017/1/13.
  */
 
-public class HomeDataModel {
+public class DataModel {
 
 
     /**

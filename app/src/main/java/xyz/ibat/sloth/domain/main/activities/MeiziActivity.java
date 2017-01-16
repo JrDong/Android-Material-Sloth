@@ -4,22 +4,32 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.base.ViewHolder;
+import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rx.Subscriber;
 import xyz.ibat.sloth.R;
 import xyz.ibat.sloth.base.BaseActivity;
-import xyz.ibat.sloth.domain.main.adapter.HomeAdapter;
-import xyz.ibat.sloth.domain.main.adapter.MeiziAdapter;
-import xyz.ibat.sloth.domain.main.model.HomeDataModel;
+import xyz.ibat.sloth.domain.main.model.DataModel;
+import xyz.ibat.sloth.network.PicassoFactory;
 import xyz.ibat.sloth.network.RetrofitFactory;
+import xyz.ibat.sloth.utils.DensityUtil;
 import xyz.ibat.sloth.utils.T;
+
+import static xyz.ibat.sloth.R.id.meizi;
 
 public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -31,7 +41,9 @@ public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.On
     @Bind(R.id.refresh)
     SwipeRefreshLayout mRefresh;
 
-    private MeiziAdapter mAdapter;
+    private CommonAdapter mAdapter;
+    private LoadMoreWrapper mLoadMoreWrapper;
+    private List<DataModel.ResultsBean> mResultsList = new ArrayList<>();
 
     int mPageIndex = 1;
 
@@ -66,15 +78,38 @@ public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.On
                 (2, StaggeredGridLayoutManager.VERTICAL);
 
         recyclerView.setLayoutManager(sgm);
-        recyclerView.setHasFixedSize(true);
-        mAdapter = new MeiziAdapter(this);
-        recyclerView.setAdapter(mAdapter);
 
         requestData();
     }
 
+    private void initAdapter() {
+        mAdapter = new CommonAdapter<DataModel.ResultsBean>(this, R.layout.item_meizi, mResultsList) {
+            @Override
+            protected void convert(ViewHolder holder, DataModel.ResultsBean resultsBean, int position) {
+                ImageView view = (ImageView) holder.getView(meizi);
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                layoutParams.height = (int) (DensityUtil.dp2px(160) + Math.random() * 200f);
+
+                PicassoFactory.load(resultsBean.getUrl(), view);
+            }
+        };
+        mLoadMoreWrapper = new LoadMoreWrapper(mAdapter);
+        mLoadMoreWrapper.setLoadMoreView(R.layout.default_loading);
+        mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                mPageIndex++;
+                requestData();
+            }
+        });
+
+        recyclerView.setAdapter(mLoadMoreWrapper);
+
+    }
+
+
     private void requestData() {
-        Subscriber<HomeDataModel> subscriber = new Subscriber<HomeDataModel>() {
+        Subscriber<DataModel> subscriber = new Subscriber<DataModel>() {
             @Override
             public void onCompleted() {
                 if (mRefresh != null) {
@@ -88,13 +123,16 @@ public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.On
             }
 
             @Override
-            public void onNext(HomeDataModel homeDataModel) {
+            public void onNext(DataModel homeDataModel) {
+
                 if (mAdapter == null) {
-                    mAdapter = new MeiziAdapter(MeiziActivity.this, homeDataModel);
-                    recyclerView.setAdapter(mAdapter);
-                } else {
-                    mAdapter.setData(homeDataModel);
+                    initAdapter();
                 }
+                if (mPageIndex == 1) {
+                    mResultsList.clear();
+                }
+                mResultsList.addAll(homeDataModel.getResults());
+                mLoadMoreWrapper.notifyDataSetChanged();
             }
         };
 

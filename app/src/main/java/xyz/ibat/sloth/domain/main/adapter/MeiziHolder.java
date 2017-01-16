@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import xyz.ibat.sloth.R;
-import xyz.ibat.sloth.domain.main.model.HomeDataModel;
+import xyz.ibat.sloth.domain.main.model.DataModel;
 import xyz.ibat.sloth.network.PicassoFactory;
 import xyz.ibat.sloth.utils.DensityUtil;
 
@@ -30,7 +30,7 @@ public class MeiziHolder extends RecyclerView.ViewHolder{
         return new MeiziHolder(view);
     }
 
-    public void getView(HomeDataModel.ResultsBean bean) {
+    public void getView(DataModel.ResultsBean bean) {
 
         ViewGroup.LayoutParams layoutParams = meizi.getLayoutParams();
         layoutParams.height = (int) (DensityUtil.dp2px(160) + Math.random()*200f);

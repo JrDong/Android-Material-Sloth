@@ -8,14 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.base.ViewHolder;
+import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Retrofit;
 import rx.Subscriber;
 import xyz.ibat.sloth.R;
-import xyz.ibat.sloth.domain.main.adapter.HomeAdapter;
-import xyz.ibat.sloth.domain.main.model.HomeDataModel;
+import xyz.ibat.sloth.domain.main.model.DataModel;
 import xyz.ibat.sloth.network.RetrofitFactory;
 import xyz.ibat.sloth.utils.T;
 import xyz.ibat.sloth.view.SlothRecycler;
@@ -23,23 +27,22 @@ import xyz.ibat.sloth.view.SlothRecycler;
 /**
  * Created by DongJr on 2016/03/31
  */
-public class AndroidFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     @Bind(R.id.recycler_one)
     SlothRecycler mRecyclerView;
     @Bind(R.id.refresh_one)
     SwipeRefreshLayout mRefresh;
 
-    private int mPageIndex = 1;
 
-    private HomeAdapter mAdapter;
+    private CommonAdapter mAdapter;
+    private LoadMoreWrapper mLoadMoreWrapper;
 
     public static String TYPE_TAG = "TYPE_TAG";
-
+    private int mPageIndex = 1;
     private String mType;
 
-    private Retrofit retrofit;
-    private Call<HomeDataModel> call;
+    private List<DataModel.ResultsBean> mResultsList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,14 +61,38 @@ public class AndroidFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
-        mAdapter = new HomeAdapter(getContext());
-        mRecyclerView.setAdapter(mAdapter);
+        initAdapter();
 
         requestData();
     }
 
+    private void initAdapter() {
+        mAdapter = new CommonAdapter<DataModel.ResultsBean>(getContext(), R.layout.item_fragment_home, mResultsList) {
+            @Override
+            protected void convert(ViewHolder holder, DataModel.ResultsBean resultsBean, int position) {
+                holder.setText(R.id.tv_title, resultsBean.getDesc())
+                        .setText(R.id.tv_author, resultsBean.getWho())
+                        .setText(R.id.tv_date, resultsBean.getCreatedAt());
+            }
+        };
+        mLoadMoreWrapper = new LoadMoreWrapper(mAdapter);
+        mLoadMoreWrapper.setLoadMoreView(R.layout.default_loading);
+        mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                mPageIndex++;
+                requestData();
+            }
+        });
+
+        mLoadMoreWrapper.setShouldLoading(false);
+
+        mRecyclerView.setAdapter(mLoadMoreWrapper);
+
+    }
+
     private void requestData() {
-        RetrofitFactory.getInstance().getAndroidData(new Subscriber<HomeDataModel>() {
+        RetrofitFactory.getInstance().getAndroidData(new Subscriber<DataModel>() {
             @Override
             public void onCompleted() {
                 if (mRefresh != null) {
@@ -79,13 +106,15 @@ public class AndroidFragment extends Fragment implements SwipeRefreshLayout.OnRe
             }
 
             @Override
-            public void onNext(HomeDataModel model) {
-                if (mAdapter == null) {
-                    mAdapter = new HomeAdapter(getContext(), model);
-                    mRecyclerView.setAdapter(mAdapter);
-                } else {
-                    mAdapter.setData(model);
+            public void onNext(DataModel model) {
+                mLoadMoreWrapper.setShouldLoading(true);
+
+                if (mPageIndex == 1) {
+                    mResultsList.clear();
                 }
+                mResultsList.addAll(model.getResults());
+                mLoadMoreWrapper.notifyDataSetChanged();
+
             }
         }, mType, mPageIndex);
     }
