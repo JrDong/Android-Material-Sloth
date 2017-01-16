@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import xyz.ibat.sloth.R;
 import xyz.ibat.sloth.domain.main.model.DataModel;
-import xyz.ibat.sloth.network.PicassoFactory;
+import xyz.ibat.sloth.network.ImageLoader;
 import xyz.ibat.sloth.utils.DensityUtil;
 
 /**
@@ -34,6 +34,6 @@ public class MeiziHolder extends RecyclerView.ViewHolder{
 
         ViewGroup.LayoutParams layoutParams = meizi.getLayoutParams();
         layoutParams.height = (int) (DensityUtil.dp2px(160) + Math.random()*200f);
-        PicassoFactory.load(bean.getUrl(),meizi);
+        ImageLoader.load(bean.getUrl(),meizi);
     }
 }

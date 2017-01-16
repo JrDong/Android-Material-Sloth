@@ -1,7 +1,9 @@
 package xyz.ibat.sloth.domain.main.activities;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
 
@@ -25,7 +28,7 @@ import xyz.ibat.sloth.R;
 import xyz.ibat.sloth.base.BaseActivity;
 import xyz.ibat.sloth.base.adapter.NewLoadMoreWrapper;
 import xyz.ibat.sloth.domain.main.model.DataModel;
-import xyz.ibat.sloth.network.PicassoFactory;
+import xyz.ibat.sloth.network.ImageLoader;
 import xyz.ibat.sloth.network.RetrofitFactory;
 import xyz.ibat.sloth.utils.DensityUtil;
 import xyz.ibat.sloth.utils.T;
@@ -91,7 +94,7 @@ public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.On
                 ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
                 layoutParams.height = (int) (DensityUtil.dp2px(160) + Math.random() * 200f);
 
-                PicassoFactory.load(resultsBean.getUrl(), view);
+                ImageLoader.load(resultsBean.getUrl(), view);
             }
         };
         mLoadMoreWrapper = new NewLoadMoreWrapper(this,mAdapter,recyclerView);
@@ -105,6 +108,26 @@ public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.On
         });
 
         recyclerView.setAdapter(mLoadMoreWrapper);
+
+        mAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                Intent intent = new Intent();
+                intent.setClass(MeiziActivity.this, ImagePreviewActivity.class);
+                intent.putExtra(ImagePreviewActivity.URL_TAG,mResultsList.get(position).getUrl());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation
+                            (MeiziActivity.this,view,"meizi").toBundle());
+                } else {
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                return false;
+            }
+        });
 
     }
 

@@ -10,10 +10,10 @@ import xyz.ibat.sloth.SlothApplication;
  * Created by jerry on 2017/1/14.
  */
 
-public class PicassoFactory {
+public class ImageLoader {
 
 
-    private PicassoFactory(){
+    private ImageLoader(){
 
     }
 
