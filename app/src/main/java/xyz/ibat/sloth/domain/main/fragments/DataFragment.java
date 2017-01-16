@@ -77,7 +77,7 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                         .setText(R.id.tv_date, resultsBean.getCreatedAt());
             }
         };
-        mLoadMoreWrapper = new NewLoadMoreWrapper(getContext(), mAdapter);
+        mLoadMoreWrapper = new NewLoadMoreWrapper(getContext(), mAdapter,mRecyclerView);
         mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
@@ -86,7 +86,6 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             }
         });
 
-        mLoadMoreWrapper.setShouldLoadMore(false);
         mRecyclerView.setAdapter(mLoadMoreWrapper);
 
     }
@@ -108,16 +107,12 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
             @Override
             public void onNext(DataModel model) {
-                mLoadMoreWrapper.showLoadView(true);
-                mLoadMoreWrapper.setShouldLoadMore(true);
                 if (mPageIndex == 1) {
                     mResultsList.clear();
                 }
                 List<DataModel.ResultsBean> results = model.getResults();
-                if (results.size() < 20 && mPageIndex == 3) {
-                    Log.e("adapter", "show nomore view");
+                if (results.size() < 10) {
                     mLoadMoreWrapper.setLoadState(NewLoadMoreWrapper.LoadState.NOMORE);
-                    mLoadMoreWrapper.setShouldLoadMore(false);
                 } else {
                     mLoadMoreWrapper.setLoadState(NewLoadMoreWrapper.LoadState.LOAD);
                 }

@@ -25,26 +25,15 @@ public class NewLoadMoreWrapper extends LoadMoreWrapper {
     private TextView loadText;
 
     private LayoutInflater mInflater;
-    private Context mContext;
 
-    public NewLoadMoreWrapper(Context context, RecyclerView.Adapter adapter) {
+    public NewLoadMoreWrapper(Context context, RecyclerView.Adapter adapter,RecyclerView parent) {
         super(adapter);
-        mContext = context;
-        mInflater = LayoutInflater.from(context);
 
-        mFooterView = mInflater.inflate(R.layout.default_loading, null, false);
+        mInflater = LayoutInflater.from(context);
+        mFooterView = mInflater.inflate(R.layout.default_loading,parent, false);
         loadProgress = (ProgressBar) mFooterView.findViewById(R.id.load_progress);
         loadText = (TextView) mFooterView.findViewById(R.id.loading_text);
         setLoadMoreView(mFooterView);
-
-    }
-
-    public void showLoadView(boolean show) {
-        if (show) {
-            mFooterView.setVisibility(View.VISIBLE);
-        } else {
-            mFooterView.setVisibility(View.GONE);
-        }
     }
 
     public void setLoadState(LoadState state) {
@@ -52,11 +41,14 @@ public class NewLoadMoreWrapper extends LoadMoreWrapper {
         switch (state) {
             case LOAD:
                 showLoadView();
+                setShouldLoadMore(true);
                 break;
             case ERROR:
+                setShouldLoadMore(false);
                 showLoadErrorView();
                 break;
             case NOMORE:
+                setShouldLoadMore(false);
                 showLoadNoMoreView();
                 break;
             default:

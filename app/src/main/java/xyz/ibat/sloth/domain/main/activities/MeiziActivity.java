@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 import rx.Subscriber;
 import xyz.ibat.sloth.R;
 import xyz.ibat.sloth.base.BaseActivity;
+import xyz.ibat.sloth.base.adapter.NewLoadMoreWrapper;
 import xyz.ibat.sloth.domain.main.model.DataModel;
 import xyz.ibat.sloth.network.PicassoFactory;
 import xyz.ibat.sloth.network.RetrofitFactory;
@@ -42,7 +43,7 @@ public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.On
     SwipeRefreshLayout mRefresh;
 
     private CommonAdapter mAdapter;
-    private LoadMoreWrapper mLoadMoreWrapper;
+    private NewLoadMoreWrapper mLoadMoreWrapper;
     private List<DataModel.ResultsBean> mResultsList = new ArrayList<>();
 
     int mPageIndex = 1;
@@ -78,7 +79,7 @@ public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.On
                 (2, StaggeredGridLayoutManager.VERTICAL);
 
         recyclerView.setLayoutManager(sgm);
-
+        initAdapter();
         requestData();
     }
 
@@ -93,7 +94,7 @@ public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.On
                 PicassoFactory.load(resultsBean.getUrl(), view);
             }
         };
-        mLoadMoreWrapper = new LoadMoreWrapper(mAdapter);
+        mLoadMoreWrapper = new NewLoadMoreWrapper(this,mAdapter,recyclerView);
         mLoadMoreWrapper.setLoadMoreView(R.layout.default_loading);
         mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
             @Override
@@ -119,19 +120,23 @@ public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.On
 
             @Override
             public void onError(Throwable e) {
+                mLoadMoreWrapper.setLoadState(NewLoadMoreWrapper.LoadState.ERROR);
                 T.show(e.getMessage());
             }
 
             @Override
             public void onNext(DataModel homeDataModel) {
 
-                if (mAdapter == null) {
-                    initAdapter();
-                }
                 if (mPageIndex == 1) {
                     mResultsList.clear();
                 }
-                mResultsList.addAll(homeDataModel.getResults());
+                List<DataModel.ResultsBean> results = homeDataModel.getResults();
+                if (results.size() < 10) {
+                    mLoadMoreWrapper.setLoadState(NewLoadMoreWrapper.LoadState.NOMORE);
+                } else {
+                    mLoadMoreWrapper.setLoadState(NewLoadMoreWrapper.LoadState.LOAD);
+                }
+                mResultsList.addAll(results);
                 mLoadMoreWrapper.notifyDataSetChanged();
             }
         };

@@ -109,6 +109,9 @@ public class LoadMoreWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemCount() {
+        if (mInnerAdapter.getItemCount()==0){
+            return 0;
+        }
         return mInnerAdapter.getItemCount() + (hasLoadMore() ? 1 : 0);
     }
 
