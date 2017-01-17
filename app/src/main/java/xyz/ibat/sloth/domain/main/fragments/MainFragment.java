@@ -60,6 +60,14 @@ public class MainFragment extends BaseFragment {
         bundle2.putString(DataFragment.TYPE_TAG, "前端");
         dataFragment2.setArguments(bundle2);
         adapter.addFragment(dataFragment2, "前端");
+        //拓展资源
+        DataFragment dataFragment3 = new DataFragment();
+        Bundle bundle3 = new Bundle();
+        bundle3.putString(DataFragment.TYPE_TAG,"拓展资源");
+        dataFragment3.setArguments(bundle3);
+        adapter.addFragment(dataFragment3,"拓展资源");
+
+
 
         mViewPager.setAdapter(adapter);
         //必须在setAdapter之后调用

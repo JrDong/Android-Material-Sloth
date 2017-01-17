@@ -19,6 +19,7 @@
     <string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_footer_hint_ready">加载中</string>
 
+    <string name="network_error">网络不给力哦</string>
 
     <string name="card_view_text">Please do not see me off.The journey I am walking on alone is lonely and dangerous.</string>
 </resources>

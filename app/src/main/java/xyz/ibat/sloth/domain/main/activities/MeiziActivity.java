@@ -64,9 +64,8 @@ public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.On
         ButterKnife.bind(this);
 
 
-        setSupportActionBar(mainToolbar);
-
         mainToolbar.setTitle("妹纸");
+        setSupportActionBar(mainToolbar);
         mainToolbar.setNavigationIcon(R.mipmap.icon_arrow_back);
         mainToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +73,6 @@ public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.On
                 finish();
             }
         });
-
         mRefresh.setColorSchemeResources(android.R.color.holo_blue_bright);
         mRefresh.setOnRefreshListener(this);
 
@@ -97,7 +95,7 @@ public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.On
                 ImageLoader.load(resultsBean.getUrl(), view);
             }
         };
-        mLoadMoreWrapper = new NewLoadMoreWrapper(this,mAdapter,recyclerView);
+        mLoadMoreWrapper = new NewLoadMoreWrapper(this, mAdapter, recyclerView);
         mLoadMoreWrapper.setLoadMoreView(R.layout.default_loading);
         mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
             @Override
@@ -114,10 +112,10 @@ public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.On
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                 Intent intent = new Intent();
                 intent.setClass(MeiziActivity.this, ImagePreviewActivity.class);
-                intent.putExtra(ImagePreviewActivity.URL_TAG,mResultsList.get(position).getUrl());
+                intent.putExtra(ImagePreviewActivity.URL_TAG, mResultsList.get(position).getUrl());
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation
-                            (MeiziActivity.this,view,"meizi").toBundle());
+                            (MeiziActivity.this, view, "meizi").toBundle());
                 } else {
                     startActivity(intent);
                 }

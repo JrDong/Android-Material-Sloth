@@ -4,12 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
 
@@ -21,6 +22,7 @@ import butterknife.ButterKnife;
 import rx.Subscriber;
 import xyz.ibat.sloth.R;
 import xyz.ibat.sloth.base.adapter.NewLoadMoreWrapper;
+import xyz.ibat.sloth.base.webview.WebActivity;
 import xyz.ibat.sloth.domain.main.model.DataModel;
 import xyz.ibat.sloth.network.RetrofitFactory;
 import xyz.ibat.sloth.utils.T;
@@ -56,7 +58,11 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        mType = getArguments().getString(TYPE_TAG);
+        Bundle arguments = getArguments();
+
+        if (arguments != null) {
+            mType = arguments.getString(TYPE_TAG);
+        }
 
         mRefresh.setColorSchemeResources(android.R.color.holo_blue_bright);
         mRefresh.setOnRefreshListener(this);
@@ -77,7 +83,7 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                         .setText(R.id.tv_date, resultsBean.getCreatedAt());
             }
         };
-        mLoadMoreWrapper = new NewLoadMoreWrapper(getContext(), mAdapter,mRecyclerView);
+        mLoadMoreWrapper = new NewLoadMoreWrapper(getContext(), mAdapter, mRecyclerView);
         mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
@@ -87,6 +93,20 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         });
 
         mRecyclerView.setAdapter(mLoadMoreWrapper);
+
+        mAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                DataModel.ResultsBean resultsBean = mResultsList.get(position);
+                WebActivity.startActivity(getContext()
+                        , resultsBean.getUrl(), resultsBean.getDesc());
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                return false;
+            }
+        });
 
     }
 
