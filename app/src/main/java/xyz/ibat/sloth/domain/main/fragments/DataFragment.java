@@ -1,6 +1,7 @@
 package xyz.ibat.sloth.domain.main.fragments;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,6 +29,7 @@ import xyz.ibat.sloth.domain.main.model.DataModel;
 import xyz.ibat.sloth.network.RetrofitFactory;
 import xyz.ibat.sloth.utils.T;
 import xyz.ibat.sloth.view.SlothRecycler;
+import xyz.ibat.sloth.view.behavior.FABScrollBehavior;
 
 /**
  * Created by DongJr on 2016/03/31
@@ -37,7 +40,8 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     SlothRecycler mRecyclerView;
     @Bind(R.id.refresh_one)
     SwipeRefreshLayout mRefresh;
-
+    @Bind(R.id.fab)
+    FloatingActionButton mFab;
 
     private CommonAdapter mAdapter;
     private NewLoadMoreWrapper mLoadMoreWrapper;
@@ -72,6 +76,20 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         initAdapter();
 
         requestData();
+
+        mRecyclerView.addOnScrollListener(new FABScrollBehavior(mFab));
+
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!mResultsList.isEmpty()){
+                    Random random = new Random();
+                    WebActivity.startActivity(getContext()
+                            ,mResultsList.get(random.nextInt(mResultsList.size())).getUrl());
+                }
+            }
+        });
+
     }
 
     private void initAdapter() {

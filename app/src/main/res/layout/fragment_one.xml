@@ -1,16 +1,30 @@
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/refresh_one"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
-    tools:context=".domain.main.fragments.DataFragment">
+    android:layout_height="match_parent">
 
-    <xyz.ibat.sloth.view.SlothRecycler
-        android:id="@+id/recycler_one"
+    <android.support.v4.widget.SwipeRefreshLayout
+
+        android:id="@+id/refresh_one"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</android.support.v4.widget.SwipeRefreshLayout>
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".domain.main.fragments.DataFragment">
 
+        <xyz.ibat.sloth.view.SlothRecycler
+            android:id="@+id/recycler_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="60dp"
+        android:src="@mipmap/icon_search_white"
+        />
+</FrameLayout>

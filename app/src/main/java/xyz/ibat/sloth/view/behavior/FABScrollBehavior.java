@@ -4,58 +4,65 @@ import android.animation.Animator;
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
+import xyz.ibat.sloth.utils.DensityUtil;
+
 /**
  * Created by DongJr on 2016/5/4.
  */
-public class FABScrollBehavior extends CoordinatorLayout.Behavior {
+public class FABScrollBehavior extends RecyclerView.OnScrollListener {
 
     int offsetTotal = 0;
 
     private static final Interpolator INTERPOLATOR = new AccelerateDecelerateInterpolator();
 
-
+    private int mState;
     private int sinceDirectionChange;
     private int hideHeight = 0;
 
-    public FABScrollBehavior(Context context, AttributeSet attrs){
-        super(context,attrs);
+    private View innerView;
+
+    public FABScrollBehavior(View innerView){
+        this.innerView = innerView;
     }
 
-    @Override
-    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, View child, View directTargetChild, View target, int nestedScrollAxes) {
-        return (nestedScrollAxes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0;
-    }
 
     @Override
-    public void onNestedScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
+    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+        if (mState != RecyclerView.SCROLL_STATE_DRAGGING){
+            return;
+        }
+        Log.e("behavior",dy+"===========dy===============");
+
         //dy>0 向上滑 else 向下滑
-        if (dyConsumed > 0 && sinceDirectionChange < 0 || dyConsumed < 0 && sinceDirectionChange > 0) {
-            child.animate().cancel();
+        if (dy > 0 && sinceDirectionChange < 0 || dy < 0 && sinceDirectionChange > 0) {
+            innerView.animate().cancel();
             sinceDirectionChange = 0;
         }
-        sinceDirectionChange += dyConsumed;
-        if (sinceDirectionChange > child.getHeight()) {
-            hide(child);
+        sinceDirectionChange += dy;
+        if (sinceDirectionChange > DensityUtil.dp2px(46)) {
+            hide(innerView);
         } else if (sinceDirectionChange < 0 ) {
-            show(child);
+            show(innerView);
         }
     }
 
     @Override
-    public boolean onNestedFling(CoordinatorLayout coordinatorLayout, View child, View target, float velocityX, float velocityY, boolean consumed) {
-        //当快速滑动
-        return super.onNestedFling(coordinatorLayout, child, target, velocityX, velocityY, consumed);
+    public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+        mState = newState;
     }
 
     private void hide(final View view) {
         hideHeight = view.getBottom();
-        ViewPropertyAnimator animator = view.animate().translationY(hideHeight).setInterpolator(INTERPOLATOR).setDuration(600);
+        ViewPropertyAnimator animator = view.animate().translationY(hideHeight)
+                .setInterpolator(INTERPOLATOR).setDuration(400);
         animator.setListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
@@ -82,7 +89,8 @@ public class FABScrollBehavior extends CoordinatorLayout.Behavior {
 
 
     private void show(final View view) {
-        ViewPropertyAnimator animator = view.animate().translationY(0).setInterpolator(INTERPOLATOR).setDuration(600);
+        ViewPropertyAnimator animator = view.animate().translationY(0)
+                .setInterpolator(INTERPOLATOR).setDuration(400);
         animator.setListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
