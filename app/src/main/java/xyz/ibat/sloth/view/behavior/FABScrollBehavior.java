@@ -5,7 +5,6 @@ import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -14,7 +13,7 @@ import android.view.animation.Interpolator;
 /**
  * Created by DongJr on 2016/5/4.
  */
-public class BottomScrollBehavior extends CoordinatorLayout.Behavior {
+public class FABScrollBehavior extends CoordinatorLayout.Behavior {
 
     int offsetTotal = 0;
 
@@ -24,7 +23,7 @@ public class BottomScrollBehavior extends CoordinatorLayout.Behavior {
     private int sinceDirectionChange;
     private int hideHeight = 0;
 
-    public BottomScrollBehavior(Context context, AttributeSet attrs){
+    public FABScrollBehavior(Context context, AttributeSet attrs){
         super(context,attrs);
     }
 
@@ -35,8 +34,6 @@ public class BottomScrollBehavior extends CoordinatorLayout.Behavior {
 
     @Override
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
-        Log.e("behavior",dyConsumed+"===========dyConsumed===============");
-        Log.e("behavior",dyUnconsumed+"===========dyUnConsumed===============");
         //dy>0 向上滑 else 向下滑
         if (dyConsumed > 0 && sinceDirectionChange < 0 || dyConsumed < 0 && sinceDirectionChange > 0) {
             child.animate().cancel();
@@ -57,8 +54,8 @@ public class BottomScrollBehavior extends CoordinatorLayout.Behavior {
     }
 
     private void hide(final View view) {
-        hideHeight = view.getHeight();
-        ViewPropertyAnimator animator = view.animate().translationY(hideHeight).setInterpolator(INTERPOLATOR).setDuration(400);
+        hideHeight = view.getBottom();
+        ViewPropertyAnimator animator = view.animate().translationY(hideHeight).setInterpolator(INTERPOLATOR).setDuration(600);
         animator.setListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
@@ -85,7 +82,7 @@ public class BottomScrollBehavior extends CoordinatorLayout.Behavior {
 
 
     private void show(final View view) {
-        ViewPropertyAnimator animator = view.animate().translationY(0).setInterpolator(INTERPOLATOR).setDuration(400);
+        ViewPropertyAnimator animator = view.animate().translationY(0).setInterpolator(INTERPOLATOR).setDuration(600);
         animator.setListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {

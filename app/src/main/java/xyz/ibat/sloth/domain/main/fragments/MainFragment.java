@@ -69,6 +69,7 @@ public class MainFragment extends BaseFragment {
 
 
 
+
         mViewPager.setAdapter(adapter);
         //必须在setAdapter之后调用
         mTabs.setupWithViewPager(mViewPager);

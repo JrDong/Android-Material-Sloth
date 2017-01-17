@@ -27,6 +27,7 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".domain.main.activities.MeiziActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".domain.main.activities.MessageActivity"
@@ -37,9 +38,14 @@
         <activity
             android:name=".domain.main.activities.DiscussionActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".domain.main.activities.ImagePreviewActivity"/>
-        <activity android:name=".base.webview.WebActivity">
-        </activity>
+        <activity
+            android:name=".domain.main.activities.ImagePreviewActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".base.webview.WebActivity"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>
