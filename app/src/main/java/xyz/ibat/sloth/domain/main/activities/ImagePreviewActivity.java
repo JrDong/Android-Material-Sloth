@@ -3,7 +3,6 @@ package xyz.ibat.sloth.domain.main.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -64,11 +63,11 @@ public class ImagePreviewActivity extends BaseActivity {
         SCALETYPE = intent.getStringExtra(SCALETYPE_TAG);
 
         if (SCALETYPE_FITXY.equals(SCALETYPE)) {
-            image.setScaleType(ImageView.ScaleType.FIT_XY);
+//            image.setScaleType(ImageView.ScaleType.FIT_XY);
         } else if (SCALETYPE_CENTERCROP.equals(SCALETYPE)) {
-            image.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//            image.setScaleType(ImageView.ScaleType.CENTER_CROP);
         } else {
-            image.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//            image.setScaleType(ImageView.ScaleType.CENTER_CROP);
         }
 
         ImageLoader.load(url, image);
