@@ -1,15 +1,8 @@
 package xyz.ibat.sloth.domain.main.activities;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ProviderInfo;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
-import android.view.Window;
 import android.widget.ImageView;
 
 import butterknife.Bind;
@@ -17,14 +10,36 @@ import butterknife.ButterKnife;
 import xyz.ibat.sloth.R;
 import xyz.ibat.sloth.base.BaseActivity;
 import xyz.ibat.sloth.network.ImageLoader;
+import xyz.ibat.sloth.view.widget.ZoomImageView;
 
 public class ImagePreviewActivity extends BaseActivity {
 
     @Bind(R.id.image)
-    ImageView image;
+    ZoomImageView image;
 
     public static final String URL_TAG = "URL_TAG";
+
+    public static final String SCALETYPE_TAG = "SCALETYPE_TAG";
+
+    public static final String SCALETYPE_CENTERCROP = "CENTER_CROP";
+
+    public static final String SCALETYPE_FITXY = "FIT_XY";
+
+    private String SCALETYPE = SCALETYPE_FITXY;
+
     private String url;
+
+    public static void startActivity(Context context, String url) {
+        startActivity(context, url, SCALETYPE_FITXY);
+    }
+
+    public static void startActivity(Context context, String url, String scropType) {
+        Intent intent = new Intent();
+        intent.setClass(context, ImagePreviewActivity.class);
+        intent.putExtra(URL_TAG, url);
+        intent.putExtra(SCALETYPE_TAG, scropType);
+        context.startActivity(intent);
+    }
 
 
     @Override
@@ -46,8 +61,17 @@ public class ImagePreviewActivity extends BaseActivity {
 
         Intent intent = getIntent();
         url = intent.getStringExtra(URL_TAG);
+        SCALETYPE = intent.getStringExtra(SCALETYPE_TAG);
 
-        ImageLoader.load(url,image);
+        if (SCALETYPE_FITXY.equals(SCALETYPE)) {
+            image.setScaleType(ImageView.ScaleType.FIT_XY);
+        } else if (SCALETYPE_CENTERCROP.equals(SCALETYPE)) {
+            image.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        } else {
+            image.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        }
+
+        ImageLoader.load(url, image);
 
     }
 }

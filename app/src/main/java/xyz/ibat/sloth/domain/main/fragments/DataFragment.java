@@ -82,10 +82,11 @@ public class DataFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!mResultsList.isEmpty()){
+                if (!mResultsList.isEmpty()) {
                     Random random = new Random();
                     WebActivity.startActivity(getContext()
-                            ,mResultsList.get(random.nextInt(mResultsList.size())).getUrl());
+                            , mResultsList.get(random.nextInt(mResultsList.size())).getUrl()
+                            , "随机看");
                 }
             }
         });

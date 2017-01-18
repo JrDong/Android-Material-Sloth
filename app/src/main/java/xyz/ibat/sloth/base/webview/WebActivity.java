@@ -8,9 +8,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -25,6 +25,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import xyz.ibat.sloth.R;
 import xyz.ibat.sloth.base.BaseActivity;
+import xyz.ibat.sloth.domain.main.activities.ImagePreviewActivity;
 import xyz.ibat.sloth.utils.T;
 
 public class WebActivity extends BaseActivity {
@@ -102,7 +103,7 @@ public class WebActivity extends BaseActivity {
 
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint({"SetJavaScriptEnabled", "JavascriptInterface"})
     private void initWebView() {
         WebSettings webSettings = mWebView.getSettings();
         //设置与js交互
@@ -110,13 +111,30 @@ public class WebActivity extends BaseActivity {
         //设置是否支持缩放,默认true
         webSettings.setSupportZoom(false);
         //设置是否显示缩放工具
-        webSettings.setBuiltInZoomControls(true);
+        webSettings.setBuiltInZoomControls(false);
 
 
         mWebView.setWebChromeClient(new SlothWebChromeClient());
 
         mWebView.setWebViewClient(new SlothWebViewClient());
 
+
+        mWebView.addJavascriptInterface(new JSInterface(this), "webview");
+
+    }
+
+    private void addImageClickListner() {
+        // 遍历所有的img节点，并添加onclick函数
+        mWebView.loadUrl("javascript:(function(){" +
+                "var objs = document.getElementsByTagName(\"img\"); " +
+                "for(var i=0;i<objs.length;i++)  " +
+                "{"
+                + "    objs[i].onclick=function()  " +
+                "    {  "
+                + "        window.webview.openImage(this.src);  " +
+                "    }  " +
+                "}" +
+                "})()");
     }
 
     private void startProgressAnimation() {
@@ -140,12 +158,26 @@ public class WebActivity extends BaseActivity {
         super.onBackPressed();
     }
 
+    final class JSInterface {
+
+        private Context context;
+
+        public JSInterface(Context context) {
+            this.context = context;
+        }
+
+        @JavascriptInterface
+        public void openImage(String imgUrl) {
+            ImagePreviewActivity.startActivity(context, imgUrl, ImagePreviewActivity.SCALETYPE_FITXY);
+        }
+    }
+
+
     class SlothWebChromeClient extends WebChromeClient {
 
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
-            Log.e("newProgress", "newProgress " + newProgress);
             if (newProgress >= 100) {
                 progressAnimStart = false;
                 mProgress.setProgress(newProgress);
@@ -190,6 +222,7 @@ public class WebActivity extends BaseActivity {
             if (!isReceivedError) {
                 mWebView.setVisibility(View.VISIBLE);
             }
+            addImageClickListner();
         }
 
         @Override
