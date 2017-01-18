@@ -2,7 +2,11 @@ package xyz.ibat.sloth.domain.main.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
+import android.view.Window;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -43,20 +47,20 @@ public class ImagePreviewActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_image_preview);
         ButterKnife.bind(this);
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            Transition explode = TransitionInflater.from(this).inflateTransition(R.transition.explode);
-//            //退出时使用
-//            getWindow().setExitTransition(explode);
-//            //第一次进入时使用
-//            getWindow().setEnterTransition(explode);
-//            //再次进入时使用
-//            getWindow().setReenterTransition(explode);
-//        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Transition explode = TransitionInflater.from(this).inflateTransition(R.transition.fade);
+            //退出时使用
+            getWindow().setExitTransition(explode);
+            //第一次进入时使用
+            getWindow().setEnterTransition(explode);
+            //再次进入时使用
+            getWindow().setReenterTransition(explode);
+        }
 
         Intent intent = getIntent();
         url = intent.getStringExtra(URL_TAG);

@@ -115,7 +115,7 @@ public class MeiziActivity extends BaseActivity implements SwipeRefreshLayout.On
                 intent.putExtra(ImagePreviewActivity.URL_TAG, mResultsList.get(position).getUrl());
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation
-                            (MeiziActivity.this, view, "meizi").toBundle());
+                            (MeiziActivity.this).toBundle());
                 } else {
                     startActivity(intent);
                 }
