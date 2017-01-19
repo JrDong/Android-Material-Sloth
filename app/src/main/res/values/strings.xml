@@ -24,9 +24,11 @@
     <string name="project_introduction">\t\t这是用于Android学习的一个项目,里面的内容包括
         ,RxJava,Retroft,,Picasso,WebView预览图片,图片预览放大、缩小、移动,Material Design控件使用,activity酷炫切换动画等
         .目前代码结构还不是很好,以后会慢慢重构.有新的技术也会不断往项目里面添加.希望能通过这个项目技术有一定得提升</string>
-    <string name="project_thanks">\t\t项目用到了代码家的<a href="http://gank.io">gank.io</a>的api接口,还有张鸿洋的baseadapter等,鸿洋的博客是我在刚接触android的时候就
-        一直在看的,含金量很高,学到了很多东西.附上链接<a href="http://zhanghongyang.com">zhanghongyang.com</a>.感谢一直在为开源做贡献的人们.</string>
-    <string name="my_blog">\t\t附上我的博客:<a href="http:ibat.xyz">ibat.xyz</a>.里面内容很少,但希望能坚持写下去</string>
+
+    <string name="project_thanks">\t\t项目用到了代码家的 <a href="http://gank.io">gank.io</a> 的api接口,还有张鸿洋的baseadapter等,鸿洋的博客( <a href="http://zhanghongyang.com">zhanghongyang.com</a> )是我在刚接触android的时候就
+        一直在看的 , 学到了很多东西 . 感谢一直在为开源做贡献的人们 . </string>
+
+    <string name="my_blog">\t\t附上我的博客: <a href="http:ibat.xyz">ibat.xyz</a> .里面内容很少,但希望能坚持写下去</string>
     <string name="my_gmail">\t\t邮箱:idongjr@gmail.com</string>
     <string name="card_view_text">Please do not see me off.The journey I am walking on alone is lonely and dangerous.</string>
 </resources>
