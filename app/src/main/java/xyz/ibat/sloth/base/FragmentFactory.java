@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import xyz.ibat.sloth.domain.info.InfoFragment;
 import xyz.ibat.sloth.domain.main.fragments.MainFragment;
-import xyz.ibat.sloth.domain.map.MapFragment;
+import xyz.ibat.sloth.domain.map.MeiziFragment;
 import xyz.ibat.sloth.domain.mine.MineFragment;
 
 /**
@@ -18,7 +18,7 @@ public class FragmentFactory {
     public static final String MINE_TAG = "mine";
 
     private MainFragment mainFragment;
-    private MapFragment mapFragment;
+    private MeiziFragment mapFragment;
     private InfoFragment infoFragment;
     private MineFragment mineFragment;
 
@@ -48,7 +48,7 @@ public class FragmentFactory {
             mHashMap.put(MAIN_TAG, mainFragment);
         }
         if (tag.equals(MAP_TAG) && mapFragment == null) {
-            mapFragment = new MapFragment();
+            mapFragment = new MeiziFragment();
             mHashMap.put(MAP_TAG, mapFragment);
         }
         if (tag.equals(INFO_TAG) && infoFragment == null) {

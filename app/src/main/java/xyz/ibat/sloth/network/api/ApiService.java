@@ -14,4 +14,7 @@ public interface ApiService {
     @GET("data/{type}/10/{page}")
     Observable<DataModel> getAndroidData(@Path("type") String type, @Path("page") int page);
 
+    @GET("random/data/{type}/20")
+    Observable<DataModel> getRandomData(@Path("type") String type);
+
 }

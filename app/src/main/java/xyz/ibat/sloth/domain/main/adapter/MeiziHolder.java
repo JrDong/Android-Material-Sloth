@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import xyz.ibat.sloth.R;
+import xyz.ibat.sloth.domain.main.activities.ImagePreviewActivity;
 import xyz.ibat.sloth.domain.main.model.DataModel;
 import xyz.ibat.sloth.network.ImageLoader;
 import xyz.ibat.sloth.utils.DensityUtil;
@@ -30,10 +31,18 @@ public class MeiziHolder extends RecyclerView.ViewHolder{
         return new MeiziHolder(view);
     }
 
-    public void getView(DataModel.ResultsBean bean) {
+    public void getView(final DataModel.ResultsBean bean) {
 
         ViewGroup.LayoutParams layoutParams = meizi.getLayoutParams();
         layoutParams.height = (int) (DensityUtil.dp2px(160) + Math.random()*200f);
         ImageLoader.load(bean.getUrl(),meizi);
+
+        meizi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImagePreviewActivity.startActivity(v.getContext(),bean.getUrl());
+            }
+        });
+
     }
 }

@@ -51,9 +51,11 @@ public class MineFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
-        toolbar.setTitle("小董同学");
+        collapsingToolbar.setTitle("小董同学");
         ((BaseActivity) getActivity()).setSupportActionBar(toolbar);
         ImageLoader.loadCircle(R.mipmap.icon_head, userHead);
+
+
 
         setTextLink();
     }

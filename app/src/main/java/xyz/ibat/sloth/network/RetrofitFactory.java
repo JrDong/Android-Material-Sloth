@@ -49,5 +49,14 @@ public class RetrofitFactory {
 
     }
 
+    public void getRandomData(Subscriber<DataModel> subscriber,String type){
+
+        apiService.getRandomData(type)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+
+    }
+
 
 }

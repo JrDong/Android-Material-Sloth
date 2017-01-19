@@ -19,12 +19,11 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginEnd="68dp"
-            app:expandedTitleMarginStart="148dp"
             app:expandedTitleTextAppearance="@style/CollapsingToolbar_TextAppearance"
             app:layout_collapseMode="parallax"
+            app:expandedTitleMarginBottom="-64dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-
+            app:expandedTitleGravity="center_horizontal"
             >
 
             <FrameLayout
