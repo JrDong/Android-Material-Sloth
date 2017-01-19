@@ -1,5 +1,6 @@
 package xyz.ibat.sloth.view.picasso;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -13,6 +14,11 @@ import com.squareup.picasso.Transformation;
 
 public class CircleTransform implements Transformation {
 
+    private Context context;
+
+    public CircleTransform(Context context) {
+        this.context = context;
+    }
 
     @Override
     public Bitmap transform(Bitmap source) {
@@ -30,6 +36,7 @@ public class CircleTransform implements Transformation {
                 BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);
         paint.setShader(shader);
         paint.setAntiAlias(true);
+        paint.setStyle(Paint.Style.FILL);
         float r = size / 2f;
         canvas.drawCircle(r, r, r, paint);
         squaredBitmap.recycle();

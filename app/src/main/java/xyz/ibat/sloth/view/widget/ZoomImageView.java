@@ -6,17 +6,13 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.widget.ImageView;
-
-import static android.support.v7.widget.StaggeredGridLayoutManager.TAG;
 
 /**
  * Created by DongJr on 2017/1/18.
@@ -51,7 +47,7 @@ public class ZoomImageView extends ImageView implements ScaleGestureDetector.OnS
     private double mTouchSlop;
     private boolean isAutoScale;
     private float SCALE_MID = 1.0f;
-    private final int delay = 3;
+    private final int delay = 1;
     public ZoomImageView(Context context) {
         this(context, null);
     }

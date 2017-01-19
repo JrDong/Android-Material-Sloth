@@ -51,7 +51,15 @@ public class ImageLoader {
     public static void loadCircle(String url, ImageView view) {
         Picasso.with(SlothApplication.getContext())
                 .load(url)
-                .transform(new CircleTransform())
+                .transform(new CircleTransform(SlothApplication.getContext()))
+                .config(Bitmap.Config.RGB_565)
+                .into(view);
+    }
+
+    public static void loadCircle(int drawableRes, ImageView view) {
+        Picasso.with(SlothApplication.getContext())
+                .load(drawableRes)
+                .transform(new CircleTransform(SlothApplication.getContext()))
                 .config(Bitmap.Config.RGB_565)
                 .into(view);
     }

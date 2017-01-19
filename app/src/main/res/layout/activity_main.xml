@@ -1,35 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".domain.main.activities.MainActivity">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".domain.main.activities.MainActivity">
 
-    <include layout="@layout/common_toolbar" />
 
-    <android.support.v4.widget.DrawerLayout
-        android:id="@+id/drawLayout"
+    <FrameLayout
+        android:id="@+id/fl_root"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        />
 
 
-        <FrameLayout
-            android:id="@+id/fl_root"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-
-
-        <android.support.design.widget.NavigationView
-            android:id="@+id/navigation_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="left"
-            app:headerLayout="@layout/navigationview_header"
-            app:menu="@menu/menu_drawer" />
-
-    </android.support.v4.widget.DrawerLayout>
 </LinearLayout>
 
