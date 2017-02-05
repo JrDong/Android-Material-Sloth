@@ -1,9 +1,15 @@
-## 基于Metarial Design的Demo应用  
-### 内容包括:  
-1.透明状态栏，toolbar，recyclerview，drawerlayout，appbar，swiperefreshlayout等控件的使用;  
-2.实现recyclerview上拉加载和swiperefreshlayout上拉加载  
-3.自定义behavior  
-### 参考:  
-1.Material Design介绍:http://ibat.xyz/2016/04/09/Material%20Design%E4%BB%8B%E7%BB%8D/  
-2.控件介绍(一):http://ibat.xyz/2016/04/19/Material%20Design%E6%8E%A7%E4%BB%B6%E4%BB%8B%E7%BB%8D(%E4%B8%80)/  
-3.控件介绍(二):http://ibat.xyz/2016/05/11/Material%20Design%E6%8E%A7%E4%BB%B6%E4%BB%8B%E7%BB%8D(%E4%BA%8C)/  
+## Sloth  
+### 项目介绍:  
+
+	   这是一个用于Android学习的项目，使用了代码家的http://gank.io中的接口,
+	里面内容包括，Rxjava,Retroft,,Picasso,WebView预览图片,图片预览放大、
+	缩小、移动，Material Design控件使用和activity切换动画等.
+	   目前代码结构还不是很好,以后会慢慢重构.有新的技术也会不断往项目里面添加.
+	希望能通过这个项目技术有一定得提升
+
+### 效果:  
+![首页](image/sloth_home.png)  
+![drawerlayout](image/sloth_drawerlayout.png)  
+![妹子](image/sloth_meizi.png)  
+![图片预览](image/sloth_image_preview.png)  
+![关于](image/sloth_me.png)  
