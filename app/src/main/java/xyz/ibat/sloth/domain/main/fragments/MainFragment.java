@@ -28,7 +28,6 @@ import butterknife.ButterKnife;
 import xyz.ibat.sloth.R;
 import xyz.ibat.sloth.base.BaseActivity;
 import xyz.ibat.sloth.base.BaseFragment;
-import xyz.ibat.sloth.domain.main.activities.DiscussionActivity;
 import xyz.ibat.sloth.domain.main.activities.FriendActivity;
 import xyz.ibat.sloth.domain.main.activities.MeiziActivity;
 import xyz.ibat.sloth.domain.main.activities.MessageActivity;
@@ -171,7 +170,6 @@ public class MainFragment extends BaseFragment implements NavigationView.OnNavig
             case R.id.nav_discussion:
                 SlothUtil.showToast("DISCUSSION");
                 mDrawerLayout.closeDrawer(Gravity.LEFT);
-                startActivity(new Intent(getActivity(), DiscussionActivity.class));
                 break;
             case R.id.sub_item1:
                 SlothUtil.showToast("SUB_ITEM1");

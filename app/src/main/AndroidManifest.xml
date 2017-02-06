@@ -36,9 +36,6 @@
             android:name=".domain.main.activities.FriendActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".domain.main.activities.DiscussionActivity"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".domain.main.activities.ImagePreviewActivity"
             android:screenOrientation="portrait"
             />
