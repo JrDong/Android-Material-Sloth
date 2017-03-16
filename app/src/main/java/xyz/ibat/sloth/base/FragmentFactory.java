@@ -1,8 +1,10 @@
 package xyz.ibat.sloth.base;
 
+import android.os.Bundle;
+
 import java.util.HashMap;
 
-import xyz.ibat.sloth.domain.info.InfoFragment;
+import xyz.ibat.sloth.base.webview.WebFragment;
 import xyz.ibat.sloth.domain.main.fragments.MainFragment;
 import xyz.ibat.sloth.domain.map.MeiziFragment;
 import xyz.ibat.sloth.domain.mine.MineFragment;
@@ -19,7 +21,7 @@ public class FragmentFactory {
 
     private MainFragment mainFragment;
     private MeiziFragment mapFragment;
-    private InfoFragment infoFragment;
+    private WebFragment infoFragment;
     private MineFragment mineFragment;
 
 
@@ -52,7 +54,10 @@ public class FragmentFactory {
             mHashMap.put(MAP_TAG, mapFragment);
         }
         if (tag.equals(INFO_TAG) && infoFragment == null) {
-            infoFragment = new InfoFragment();
+            infoFragment = new WebFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString(WebFragment.URL_TAG, "http://ibat.xyz");
+            infoFragment.setArguments(bundle);
             mHashMap.put(INFO_TAG, infoFragment);
         }
         if (tag.equals(MINE_TAG) && mineFragment == null) {
